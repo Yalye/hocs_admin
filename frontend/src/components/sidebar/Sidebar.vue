@@ -18,14 +18,16 @@ export default {
         <div>V</div>
         <div>S</div>
       </span>
-      <span v-else>Vue Sidebar</span>
+      <div v-else class="top-left-title">
+        <div>Computer</div>
+        <div>History</div>
+      </div>
     </h1>
 
-    <SidebarLink to="/" icon="fas fa-home">Home</SidebarLink>
-    <SidebarLink to="/dashboard" icon="fas fa-columns">Dashboard</SidebarLink>
-    <SidebarLink to="/analytics" icon="fas fa-chart-bar">Analytics</SidebarLink>
-    <SidebarLink to="/friends" icon="fas fa-users">Friends</SidebarLink>
-    <SidebarLink to="/image" icon="fas fa-image">Images</SidebarLink>
+    <SidebarLink to="/" icon="fas fa-home">All News</SidebarLink>
+    <SidebarLink to="/dashboard" icon="fas fa-columns">Websites</SidebarLink>
+    <SidebarLink to="/analytics" icon="fas fa-chart-bar">Statistics</SidebarLink>
+    <SidebarLink to="/people" icon="fas fa-image">People</SidebarLink>
 
     <span
         class="collapse-icon"
@@ -42,6 +44,10 @@ export default {
   --sidebar-bg-color: #2f855a;
   --sidebar-item-hover: #38a169;
   --sidebar-item-active: #276749;
+}
+
+.top-left-title{
+  font-size: medium;
 }
 </style>
 <style scoped>
