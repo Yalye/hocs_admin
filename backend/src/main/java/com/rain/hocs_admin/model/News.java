@@ -1,5 +1,6 @@
 package com.rain.hocs_admin.model;
 
+import java.sql.Date;
 import java.time.LocalTime;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,18 +12,20 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tb_news_info")
 public class News {
-  @Id
-  private Integer id;
 
   private String title;
 
+  @Id
   private String url;
 
-  private LocalTime updateTime;
+  private Date updateTime;
 
   private String author;
 
   private String website;
 
-
+  @Override
+  public String toString(){
+    return title + ": " + url;
+  }
 }
