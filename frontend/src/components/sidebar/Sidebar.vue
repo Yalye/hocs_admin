@@ -15,8 +15,8 @@ export default {
   <div class="sidebar" :style="{ width: sidebarWidth }">
     <h1>
       <span v-if="collapsed">
-        <div>V</div>
-        <div>S</div>
+        <div>C</div>
+        <div>H</div>
       </span>
       <div v-else class="top-left-title">
         <div>Computer</div>
@@ -24,10 +24,11 @@ export default {
       </div>
     </h1>
 
-    <SidebarLink to="/" icon="fas fa-home">All News</SidebarLink>
-    <SidebarLink to="/dashboard" icon="fas fa-columns">Websites</SidebarLink>
+    <SidebarLink to="/news" icon="fas fa-home">All News</SidebarLink>
+    <SidebarLink to="/websites" icon="fas fa-columns">Websites</SidebarLink>
     <SidebarLink to="/analytics" icon="fas fa-chart-bar">Statistics</SidebarLink>
     <SidebarLink to="/people" icon="fas fa-image">People</SidebarLink>
+    <SidebarLink to="/about" icon="fas fa-image">About</SidebarLink>
 
     <span
         class="collapse-icon"
