@@ -21,10 +21,10 @@ public class NewsController {
   @Autowired
   private NewsService newsService;
 
-  @GetMapping(value = "/list", params = {"page"})
-  public @ResponseBody
-  List<News> getNewsList(@RequestParam("page") int page){
-    return newsService.getNews(page);
+  @GetMapping(value = "/list", params = {"page", "size"})
+  public @ResponseBody Iterable<News> getNewsList(@RequestParam("page") int page, @RequestParam("size") int size){
+    List<News> newses = newsService.getNews(page, size);
+    return newses;
   }
 
   @GetMapping("/hello")

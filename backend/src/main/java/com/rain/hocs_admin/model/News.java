@@ -5,12 +5,14 @@ import java.time.LocalTime;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.Data;
 
 /**
  * @author rain
  */
 @Entity
 @Table(name = "tb_news_info")
+@Data
 public class News {
 
   private String title;

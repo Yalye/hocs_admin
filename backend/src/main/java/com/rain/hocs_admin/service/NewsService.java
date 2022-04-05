@@ -21,8 +21,8 @@ public class NewsService {
   @Autowired
   private NewsRepository newsRepository;
 
-  public List<News> getNews(int page){
-    Pageable firstPageWithTwoElements = PageRequest.of(0, 2, Sort.by(Direction.DESC, "updateTime"));
+  public List<News> getNews(int page, int size){
+    Pageable firstPageWithTwoElements = PageRequest.of(page, size, Sort.by(Direction.DESC, "updateTime"));
     Page<News> pageNews = newsRepository.findAll(firstPageWithTwoElements);
     List<News> newses = pageNews.getContent();
     return newses;
