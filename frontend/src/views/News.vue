@@ -15,8 +15,8 @@
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import { AgGridVue } from "ag-grid-vue3";
-import { sidebarWidth } from '../components/sidebar/state'
-
+import { sidebarWidth } from '@/components/sidebar/state'
+import {getNews} from "@/services/NewsApi";
 
 export default {
   name: "News",
@@ -41,6 +41,21 @@ export default {
       }
     };
   },
+  computed:{
+    console: () => console,
+    windows: () => window,
+  },
+  methods: {
+    loadNews(){
+      getNews().then(response => {
+        this.newss = response.data
+        console.log(this.newss)
+      })
+    }
+  },
+  created() {
+    this.loadNews()
+  }
 };
 </script>
 
