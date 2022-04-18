@@ -3,6 +3,7 @@
     <ag-grid-vue
         class="ag-theme-alpine"
         :columnDefs="gridOptions.columnDefs"
+        @grid-ready="onGridReady"
         :rowData="gridOptions.rowData"
         :pagination=true
         :paginationPageSize=10
@@ -33,12 +34,10 @@ export default {
           {headerName: "Author", field: "author"},
           {headerName: "Website", field: "website"},
         ],
-        rowData: [
-          {title: "Toyota", update_time: "Celica", author: "Celica", website: "Celica"},
-          {title: "Ford", update_time: "Mondeo", author: "Celica", website: "Celica"},
-          {title: "Porsche", update_time: "Boxter", author: "Celica", website: "Celica"},
-        ]
-      }
+        rowData: null
+      },
+      gridApi: null,
+      columnApi: null,
     };
   },
   computed:{
@@ -48,9 +47,14 @@ export default {
   methods: {
     loadNews(){
       getNews().then(response => {
-        this.newss = response.data
-        console.log(this.newss)
+        // this.gridOptions.rowData = response.data
+        // console.log(this.gridOptions.rowData)
+        this.gridApi.setRowData(response.data)
       })
+    },
+    onGridReady(params){
+      this.gridApi = params.api;
+      this.gridColumnApi = params.columnApi;
     }
   },
   created() {
