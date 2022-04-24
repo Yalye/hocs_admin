@@ -29,8 +29,16 @@ export default {
       sidebarWidth,
       gridOptions: {
         columnDefs: [
-          {headerName: "Title", field: "title"},
-          {headerName: "Update Time", field: "update_time"},
+          {headerName: "Title", field: "title",
+            cellRenderer: function(params) {
+              let title = params.data.title;
+              let url = params.data.url;
+              let newLink = `<a href= ${url} target="_blank">${title}</a>`;
+              console.log(newLink)
+              return newLink;
+            }
+          },
+          {headerName: "Update Time", field: "updateTime"},
           {headerName: "Author", field: "author"},
           {headerName: "Website", field: "website"},
         ],
@@ -46,7 +54,7 @@ export default {
   },
   methods: {
     loadNews(){
-      getNews().then(response => {
+      getNews(0).then(response => {
         // this.gridOptions.rowData = response.data
         // console.log(this.gridOptions.rowData)
         this.gridApi.setRowData(response.data)
