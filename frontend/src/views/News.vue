@@ -29,18 +29,19 @@ export default {
       sidebarWidth,
       gridOptions: {
         columnDefs: [
-          {headerName: "Title", field: "title",
+          {headerName: "Title", field: "title",width:500,
             cellRenderer: function(params) {
               let title = params.data.title;
               let url = params.data.url;
               let newLink = `<a href= ${url} target="_blank">${title}</a>`;
               console.log(newLink)
               return newLink;
-            }
+            },
+            resizable: true
           },
-          {headerName: "Update Time", field: "updateTime"},
-          {headerName: "Author", field: "author"},
-          {headerName: "Website", field: "website"},
+          {headerName: "Update Time", field: "updateTime",width:150,},
+          {headerName: "Author", field: "author",width:150,},
+          {headerName: "Website", field: "website",width:200,},
         ],
         rowData: null
       },
