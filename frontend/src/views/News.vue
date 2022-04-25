@@ -30,7 +30,7 @@ export default {
       gridOptions: {
         columnDefs: [
           {headerName: "Title", field: "title",width:500,
-            cellRenderer: function(params) {
+            cellRenderer: function (params) {
               let title = params.data.title;
               let url = params.data.url;
               let newLink = `<a href= ${url} target="_blank">${title}</a>`;
@@ -41,7 +41,13 @@ export default {
           },
           {headerName: "Update Time", field: "updateTime",width:150,},
           {headerName: "Author", field: "author",width:150,},
-          {headerName: "Website", field: "website",width:200,},
+          {headerName: "Website", field: "website",width:200,
+          cellRenderer: function (params){
+            let website = params.data.website;
+            let newLink = `<a href= ${website} target="_blank">${website}</a>`;
+            console.log(newLink)
+            return newLink;
+          }},
         ],
         rowData: null
       },
