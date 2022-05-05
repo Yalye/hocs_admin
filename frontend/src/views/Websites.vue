@@ -1,5 +1,7 @@
 <template>
-  <div class="about">
+  <b-button> add new webiste </b-button>
+  <el-button @click="editRow">add</el-button>
+  <div class="WebsiteTable">
     <ag-grid-vue
         class="ag-theme-alpine"
         :columnDefs="gridOptions.columnDefs"
@@ -65,6 +67,11 @@ export default {
     onGridReady(params){
       this.gridApi = params.api;
       this.gridColumnApi = params.columnApi;
+    },
+    // eslint-disable-next-line no-unused-vars
+    editRow(operation, row){
+      operation = 1;
+      row = 2;
     }
   },
   created() {
