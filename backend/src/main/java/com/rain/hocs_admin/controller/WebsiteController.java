@@ -19,7 +19,7 @@ public class WebsiteController {
     @Autowired
     private WebsiteService websiteService;
 
-    @GetMapping(value = "/list")
+    @GetMapping(value = "/websites")
     public @ResponseBody Iterable<Website> getWebsiteList(){
       Iterable<Website> websites = websiteService.getWebsites();
       return websites;
