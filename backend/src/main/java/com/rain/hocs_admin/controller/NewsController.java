@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/news")
+@CrossOrigin
 //@CrossOrigin(origins = "http://localhost:8081")
 public class NewsController {
 
