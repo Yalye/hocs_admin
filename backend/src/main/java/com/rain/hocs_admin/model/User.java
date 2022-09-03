@@ -9,7 +9,7 @@ import lombok.Data;
  * @author rain
  */
 @Entity
-@Table(name = "auth_user")
+@Table(name = "tb_user")
 @Data
 public class User {
 

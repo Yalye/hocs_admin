@@ -22,11 +22,20 @@ public class UserController {
   @Autowired
   private PasswordEncoder passwordEncoder;
 
-//  @PostMapping(value = "/login")
-//  public ResponseBody String processLogin(String username, String password){
-//    User user = userRepository.findUserByUsername(username);
-//
-//  }
+  @PostMapping(value = "/login")
+  public @ResponseBody String processLogin(String username, String password){
+    User user = userRepository.findUserByUsername(username);
+    if (null == user){
+      return "no such account";
+    } else {
+      String encryptedPassword = passwordEncoder.encode(password);
+      if (passwordEncoder.matches(password, encryptedPassword)){
+        return "login succeed";
+      } else {
+        return "wrong password";
+      }
+    }
+  }
 
   @PostMapping(value = "/register")
   public @ResponseBody String processRegister(String username, String password){
