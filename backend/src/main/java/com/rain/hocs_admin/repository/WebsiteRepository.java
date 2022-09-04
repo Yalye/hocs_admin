@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.repository.CrudRepository;
 
@@ -16,5 +17,5 @@ import org.springframework.data.repository.CrudRepository;
  * @author rain
  */
 @Repository
-public interface WebsiteRepository extends CrudRepository<Website, String> {
+public interface WebsiteRepository extends PagingAndSortingRepository<Website, Integer> {
 }
