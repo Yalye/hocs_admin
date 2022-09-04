@@ -3,6 +3,7 @@ package com.rain.hocs_admin.controller;
 import com.rain.hocs_admin.model.User;
 import com.rain.hocs_admin.model.Website;
 import com.rain.hocs_admin.service.WebsiteService;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,4 +51,31 @@ public class WebsiteController {
     return new ResponseEntity(data, HttpStatus.OK);
   }
 
+  @PostMapping(value = "/create")
+  @ResponseBody
+  public ResponseEntity createWebsite(@RequestBody Map<String, Object> payload){
+    int importance = (int)payload.get("importance");
+    String description = (String)payload.get("remark");
+    String url = (String)payload.get("url");
+    String xpath = (String)payload.get("xpath");
+    String prefix = (String)payload.get("prefix");
+
+    Website website = new Website();
+    website.setDesc(description);
+    website.setImportance(importance);
+    website.setSpecialDomain(prefix);
+    website.setUrl(url);
+    website.setXpath(xpath);
+    website.setXpath(xpath);
+
+    Date date = new Date(System.currentTimeMillis());
+    website.setAddTime(date);
+    websiteService.addWebsite(website);
+
+    Map<String, Object> result = new HashMap<>();
+    result.put("code", 20000);
+    result.put("data", "success");
+    return new ResponseEntity(result, HttpStatus.OK);
+
+  }
 }

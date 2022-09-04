@@ -28,4 +28,6 @@ public class Website {
   private int usingProxy;
 
   private Date addTime;
+
+  private int importance;
 }

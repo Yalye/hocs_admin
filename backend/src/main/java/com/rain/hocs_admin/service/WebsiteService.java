@@ -33,4 +33,8 @@ public class WebsiteService {
     List<Website> websites = pageWebsites.getContent();
     return websites;
   }
+
+  public void addWebsite(Website website){
+    websiteRepository.save(website);
+  }
 }
