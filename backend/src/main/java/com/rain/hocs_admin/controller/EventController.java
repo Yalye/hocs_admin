@@ -1,9 +1,10 @@
 package com.rain.hocs_admin.controller;
 
+import com.rain.hocs_admin.model.HistoryEvent;
 import com.rain.hocs_admin.model.News;
-import com.rain.hocs_admin.model.Website;
-import com.rain.hocs_admin.repository.NewsRepository;
-import com.rain.hocs_admin.service.NewsService;
+import com.rain.hocs_admin.repository.EventRepository;
+import com.rain.hocs_admin.service.EventService;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,32 +22,38 @@ import org.springframework.web.bind.annotation.RestController;
  * @author rain
  */
 @RestController
-@RequestMapping("/news")
+@RequestMapping("/event")
 @CrossOrigin
-//@CrossOrigin(origins = "http://localhost:8081")
-public class NewsController {
+public class EventController {
 
   @Autowired
-  private NewsService newsService;
+  private EventRepository eventRepository;
 
-  @GetMapping(value = "/list", params = {"page", "limit", "sort"})
+  @Autowired
+  private EventService eventService;
+
+//  @GetMapping(value = "/list", params = {"year", "month", "day"})
+//public ResponseEntity getEventList(@RequestParam("year") int year, @RequestParam("month") int month, @RequestParam("day") int day){
+
+  @GetMapping(value = "/list")
   @ResponseBody
-  public ResponseEntity getNewsList(@RequestParam("page") int page, @RequestParam("limit") int size, @RequestParam("sort") String sort){
-    List<News> websiteList = newsService.getNews(page, size);
+  public ResponseEntity getEventList(){
+    Iterable<HistoryEvent> eventList = eventService.getAllEvent();
+
+    List<HistoryEvent> historyEvents = new ArrayList<>();
+    for (HistoryEvent event : eventList) {
+      historyEvents.add(event);
+    }
     Map<String, Object> content = new HashMap<>();
     Map<String, Object> data = new HashMap<>();
-    content.put("items", websiteList);
+    content.put("items", historyEvents);
 
     // 默认只看1000条
-    content.put("total", 1000);
+    content.put("total", historyEvents.size());
 
     data.put("data", content);
     data.put("code", 20000);
     return new ResponseEntity(data, HttpStatus.OK);
   }
 
-  @GetMapping("/hello")
-  public String getHello(){
-    return "hello";
-  }
 }

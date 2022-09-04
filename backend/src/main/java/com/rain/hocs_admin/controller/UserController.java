@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,8 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/user")
-@CrossOrigin
-//    (originPatterns = "http://localhost:9527")
+@CrossOrigin(originPatterns = "http://localhost:9527")
 public class UserController {
 
   @Autowired
@@ -54,11 +54,12 @@ public class UserController {
     }
   }
 
-  @PostMapping(value = "/login")
+  @PostMapping(value = "/login", params = {"username", "password"})
   @ResponseBody
-  public ResponseEntity processLogin(@RequestBody Map<String, Object> payload){
-    String username = (String)payload.get("username");
-    String password = (String)payload.get("password");
+  public ResponseEntity processLogin(@RequestParam("page") String username, @RequestParam("limit") String password){
+//    @RequestBody Map<String, Object> payload
+//    String username = (String)payload.get("username");
+//    String password = (String)payload.get("password");
     User user = userRepository.findUserByUsername(username);
     Map<String, Object> content = new HashMap<>();
     Map<String, Object> data = new HashMap<>();
