@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import javax.persistence.criteria.CriteriaBuilder.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,13 +43,23 @@ public class EventController {
 
   @GetMapping(value = "/list")
   @ResponseBody
-  public ResponseEntity getEventList(){
+  public ResponseEntity getEventList(@RequestParam("year") Optional<Integer> year,
+      @RequestParam("month") Optional<Integer> month,
+      @RequestParam("day") Optional<Integer> day){
     Iterable<HistoryEvent> eventList = eventService.getAllEvent();
 
     List<HistoryEvent> historyEvents = new ArrayList<>();
     for (HistoryEvent event : eventList) {
       historyEvents.add(event);
     }
+
+    if (year.isPresent() && month.isPresent() && day.isPresent()){
+//      historyEvents = eventService.getAllEventByParams(year.get());
+      historyEvents = eventRepository.findByYearAndMonthAndDay(year.get(),month.get(),day.get());
+    } else if (month.isPresent() && day.isPresent()) {
+      historyEvents = eventRepository.findByMonthAndDay(month.get(),day.get());
+    }
+
     Map<String, Object> content = new HashMap<>();
     Map<String, Object> data = new HashMap<>();
     content.put("items", historyEvents);
@@ -70,9 +82,9 @@ public class EventController {
 
     HistoryEvent event = new HistoryEvent();
     event.setEventTitle(title);
-    event.setEventYear(year);
-    event.setEventMonth(month);
-    event.setEventDay(day);
+    event.setYear(year);
+    event.setMonth(month);
+    event.setDay(day);
 
     eventRepository.save(event);
 

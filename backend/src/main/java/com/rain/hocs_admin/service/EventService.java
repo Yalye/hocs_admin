@@ -25,4 +25,9 @@ public class EventService {
     Iterable<HistoryEvent> events = eventRepository.findAll();
     return events;
   }
+
+  public List<HistoryEvent> getAllEventByParams(int year){
+    List<HistoryEvent> events = eventRepository.findByYear(year);
+    return events;
+  }
 }

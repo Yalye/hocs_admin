@@ -1,5 +1,6 @@
 package com.rain.hocs_admin.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -18,9 +19,12 @@ public class HistoryEvent {
 
   private String eventTitle;
 
-  private int eventYear;
+  @Column(name = "event_year")
+  private int year;
 
-  private int eventMonth;
+  @Column(name = "event_month")
+  private int month;
 
-  private int eventDay;
+  @Column(name = "event_day")
+  private int day;
 }
