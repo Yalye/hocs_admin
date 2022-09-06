@@ -81,7 +81,7 @@ public class EventController {
     int day = (int)payload.get("day");
 
     HistoryEvent event = new HistoryEvent();
-    event.setEventTitle(title);
+    event.setTitle(title);
     event.setYear(year);
     event.setMonth(month);
     event.setDay(day);

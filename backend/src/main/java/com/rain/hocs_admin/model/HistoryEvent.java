@@ -17,7 +17,8 @@ public class HistoryEvent {
   @Id
   private int id;
 
-  private String eventTitle;
+  @Column(name = "event_title")
+  private String title;
 
   @Column(name = "event_year")
   private int year;
