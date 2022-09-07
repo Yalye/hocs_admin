@@ -22,7 +22,7 @@ public class NewsService {
   private NewsRepository newsRepository;
 
   public List<News> getNews(int page, int size){
-    Pageable firstPageWithTwoElements = PageRequest.of(page, size, Sort.by(Direction.DESC, "updateTime"));
+    Pageable firstPageWithTwoElements = PageRequest.of(page - 1, size, Sort.by(Direction.DESC, "updateTime"));
     Page<News> pageNews = newsRepository.findAll(firstPageWithTwoElements);
     List<News> newses = pageNews.getContent();
     return newses;

@@ -1,11 +1,14 @@
 package com.rain.hocs_admin.model;
 
-import java.sql.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.TemporalType;
 import lombok.Data;
 import org.springframework.data.jpa.repository.Temporal;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,7 +26,7 @@ public class News {
   @Id
   private String url;
 
-  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
   private Date updateTime;
 
   private String author;
