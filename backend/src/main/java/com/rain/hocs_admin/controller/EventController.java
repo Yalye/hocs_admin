@@ -79,12 +79,14 @@ public class EventController {
     int year = (int)payload.get("year");
     int month = (int)payload.get("month");
     int day = (int)payload.get("day");
+    String description = (String)payload.get("description");
 
     HistoryEvent event = new HistoryEvent();
     event.setTitle(title);
     event.setYear(year);
     event.setMonth(month);
     event.setDay(day);
+    event.setDescription(description);
 
     eventRepository.save(event);
 
