@@ -74,7 +74,7 @@ public class EventController {
 
   @PostMapping(value = "/create")
   @ResponseBody
-  public ResponseEntity createWebsite(@RequestBody Map<String, Object> payload){
+  public ResponseEntity createEvent(@RequestBody Map<String, Object> payload){
     String title = (String)payload.get("title");
     int year = (int)payload.get("year");
     int month = (int)payload.get("month");
@@ -87,6 +87,32 @@ public class EventController {
     event.setMonth(month);
     event.setDay(day);
     event.setDescription(description);
+
+    eventRepository.save(event);
+
+    Map<String, Object> result = new HashMap<>();
+    result.put("code", 20000);
+    result.put("data", "success");
+    return new ResponseEntity(result, HttpStatus.OK);
+  }
+
+  @PostMapping(value = "/update")
+  @ResponseBody
+  public ResponseEntity updateEvent(@RequestBody Map<String, Object> payload){
+    String title = (String)payload.get("title");
+    int year = (int)payload.get("year");
+    int month = (int)payload.get("month");
+    int day = (int)payload.get("day");
+    String description = (String)payload.get("description");
+    int id = (int)payload.get("id");
+
+    HistoryEvent event = new HistoryEvent();
+    event.setTitle(title);
+    event.setYear(year);
+    event.setMonth(month);
+    event.setDay(day);
+    event.setDescription(description);
+    event.setId(id);
 
     eventRepository.save(event);
 
