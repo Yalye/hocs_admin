@@ -28,4 +28,6 @@ public class HistoryEvent {
 
   @Column(name = "event_day")
   private int day;
+
+  private String description;
 }
