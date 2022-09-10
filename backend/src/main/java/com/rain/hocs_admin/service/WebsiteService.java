@@ -28,7 +28,7 @@ public class WebsiteService {
   }
 
   public List<Website> getWebsites(int page, int size){
-    Pageable pageable = PageRequest.of(page, size, Sort.by(Direction.DESC, "addTime"));
+    Pageable pageable = PageRequest.of(page - 1, size, Sort.by(Direction.DESC, "addTime"));
     Page<Website> pageWebsites = websiteRepository.findAll(pageable);
     List<Website> websites = pageWebsites.getContent();
     return websites;

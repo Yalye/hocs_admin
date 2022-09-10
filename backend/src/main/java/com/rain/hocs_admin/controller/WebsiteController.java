@@ -55,7 +55,7 @@ public class WebsiteController {
   @ResponseBody
   public ResponseEntity createWebsite(@RequestBody Map<String, Object> payload){
     int importance = (int)payload.get("importance");
-    String description = (String)payload.get("remark");
+    String description = (String)payload.get("desc");
     String url = (String)payload.get("url");
     String xpath = (String)payload.get("xpath");
     String prefix = (String)payload.get("prefix");
@@ -63,7 +63,7 @@ public class WebsiteController {
     Website website = new Website();
     website.setDesc(description);
     website.setImportance(importance);
-    website.setSpecialDomain(prefix);
+    website.setPrefix(prefix);
     website.setUrl(url);
     website.setXpath(xpath);
     website.setXpath(xpath);

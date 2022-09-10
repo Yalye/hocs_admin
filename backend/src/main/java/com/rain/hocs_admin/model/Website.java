@@ -23,7 +23,8 @@ public class Website {
 
   private String xpath;
 
-  private String specialDomain;
+  @Column(name = "special_domain")
+  private String prefix;
 
   private int usingProxy;
 
