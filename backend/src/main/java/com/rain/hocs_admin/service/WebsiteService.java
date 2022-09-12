@@ -34,6 +34,11 @@ public class WebsiteService {
     return websites;
   }
 
+  public List<Website> getWebsites(String title){
+    List<Website> websites = websiteRepository.findByUrlContains(title);
+    return websites;
+  }
+
   public void addWebsite(Website website){
     websiteRepository.save(website);
   }

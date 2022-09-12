@@ -31,20 +31,26 @@ public class WebsiteController {
   @Autowired
   private WebsiteService websiteService;
 
-  @GetMapping(value = "/websites", params = {"page", "limit", "sort"})
+  @GetMapping(value = "/websites", params = {"page", "limit", "keyword", "sort"})
   @ResponseBody
-  public ResponseEntity getWebsiteList(@RequestParam("page") int page, @RequestParam("limit") int size, @RequestParam("sort") String sort) {
-    List<Website> websiteList = websiteService.getWebsites(page, size);
+  public ResponseEntity getWebsiteList(@RequestParam("page") int page, @RequestParam("limit") int size, @RequestParam("keyword") String keyword,@RequestParam("sort") String sort) {
     Map<String, Object> content = new HashMap<>();
     Map<String, Object> data = new HashMap<>();
-    content.put("items", websiteList);
+    if (null != keyword && !keyword.isEmpty()) {
+      List<Website> websiteList = websiteService.getWebsites(keyword);
+      content.put("items", websiteList);
+      content.put("total", websiteList.size());
+    } else {
+      List<Website> websiteList = websiteService.getWebsites(page, size);
+      content.put("items", websiteList);
 
-    Iterable<Website> websites = websiteService.getWebsites();
-    int total_count = 0;
-    for (Website website : websites) {
-      total_count++;
+      Iterable<Website> websites = websiteService.getWebsites();
+      int total_count = 0;
+      for (Website website : websites) {
+        total_count++;
+      }
+      content.put("total", total_count);
     }
-    content.put("total", total_count);
 
     data.put("data", content);
     data.put("code", 20000);

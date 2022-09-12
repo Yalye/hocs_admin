@@ -18,4 +18,6 @@ import org.springframework.data.repository.CrudRepository;
  */
 @Repository
 public interface WebsiteRepository extends PagingAndSortingRepository<Website, Integer> {
+
+  List<Website> findByUrlContains(String title);
 }

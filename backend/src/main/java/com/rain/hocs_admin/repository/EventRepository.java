@@ -16,4 +16,6 @@ public interface EventRepository extends PagingAndSortingRepository<HistoryEvent
 
   public List<HistoryEvent> findByMonthAndDay(int month, int day);
 
+  public List<HistoryEvent> findByMonth(int month);
+
 }

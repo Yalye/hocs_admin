@@ -58,6 +58,8 @@ public class EventController {
       historyEvents = eventRepository.findByYearAndMonthAndDay(year.get(),month.get(),day.get());
     } else if (month.isPresent() && day.isPresent()) {
       historyEvents = eventRepository.findByMonthAndDay(month.get(),day.get());
+    } else if (month.isPresent()){
+      historyEvents = eventRepository.findByMonth(month.get());
     }
 
     Map<String, Object> content = new HashMap<>();
